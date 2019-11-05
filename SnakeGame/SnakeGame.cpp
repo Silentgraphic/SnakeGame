@@ -4,14 +4,15 @@
 
 using namespace Map;
 using namespace std;
+using namespace Snake;
 
 int main()
 {
-	MapGenerator testing;
-	Snake::SnakeGenerator testing2;
 	int x,y; 
 	std:cin >> x >> y;
-	string maybeMap = testing.makemap(x,y);
-	string maybeSnake = testing2.makeSnake();
-	std::cout << maybeMap << std::endl << maybeSnake << std::endl;
+	MapGenerator testing;
+	SnakeGenerator testing2;
+	CompletedMap maybeMap = testing.makemap(x,y);
+	SnakeComplete makeMeASnake = testing2.makeSnake();
+	std::cout << maybeMap.finishedMap << std::endl << makeMeASnake.finsishedSnake << std::endl;
 }

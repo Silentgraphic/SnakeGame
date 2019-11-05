@@ -7,6 +7,8 @@ using namespace std;
 
 class SnakeBody
 {
+	private:
+		string snakeBody;
 	protected:
 		string snakeBodyGenerator() {
 			string snakeBody;
@@ -16,6 +18,9 @@ class SnakeBody
 			}
 			return snakeBody;
 		};
+		string getSnakeBody() {
+			return snakeBody;
+		}
 };
 
 class SnakeHead
@@ -35,18 +40,20 @@ class SnakeMaker: private SnakeBody, private SnakeHead
 {
 	private:
 		string finishedSnake;
+		SnakeComplete makeMeASnake;
 	public:
-		void generateFinishedSnake() {
-			finishedSnake.append(snakeBodyGenerator());
-			finishedSnake.append(getSnakeHead());
-		};
-		string getFinishedSnake() {
-			return finishedSnake;
+		SnakeComplete generateFinishedSnake() {
+			snakeBodyGenerator();
+			snakeHeadGenerator();
+			makeMeASnake.finsishedSnake.append(getSnakeBody());
+			makeMeASnake.finsishedSnake.append(getSnakeHead());
+			return makeMeASnake;
 		};
 };
 
-string SnakeGenerator::makeSnake() {
+SnakeComplete SnakeGenerator::makeSnake() {
 	SnakeMaker snake;
-	snake.generateFinishedSnake();
-	return snake.getFinishedSnake();
+	SnakeComplete completeSnake;
+	completeSnake = snake.generateFinishedSnake();
+	return completeSnake;
 };

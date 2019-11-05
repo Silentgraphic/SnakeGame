@@ -45,34 +45,28 @@ class VerticalLines
 class Shape 
 {
 	public:
-		virtual void makeShape(int height,int width) = 0;
-		void setHeightAndWidth(int setHeight, int setWidth) {
-			int height = setHeight;
-			int width = setWidth;
-		};
-	protected:
-		int height;
-		int width;
+		virtual CompletedMap makeShape(int height,int width) = 0;
 };
 
 class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 {
 	public:
-		void makeShape(int height,int width) {
+		CompletedMap map;
+		CompletedMap makeShape(int height,int width) {
 			makeSquare(height, width);
+			return map;
 		};
-		string finishedSquareMap;
 	private:
 		void makeSquare(int height, int width) {
-			finishedSquareMap.append(makeTopAndBottomOfMap(width));
-			finishedSquareMap.append(makeSidesOfMap(height,width));
-			finishedSquareMap.append(makeTopAndBottomOfMap(width));
+			map.finishedMap.append(makeTopAndBottomOfMap(width));
+			map.finishedMap.append(makeSidesOfMap(height,width));
+			map.finishedMap.append(makeTopAndBottomOfMap(width));
 		};
 };
 
-string MapGenerator::makemap(int heightInput, int widthInput) {
+CompletedMap MapGenerator::makemap(int heightInput, int widthInput) {
 	MakeMapSquare squareMap;
-	squareMap.setHeightAndWidth(heightInput, widthInput);
-	squareMap.makeShape(heightInput,widthInput);
-	return squareMap.finishedSquareMap;
+	CompletedMap generatedMap;
+	generatedMap = squareMap.makeShape(heightInput,widthInput);
+	return generatedMap;
 };
