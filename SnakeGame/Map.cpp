@@ -16,7 +16,7 @@ class HorizontalLines
 			string topAndBottom;
 			for (int i = 0; i < topAndBottomWidth; i++)
 			{
-				topAndBottom.append("_");
+				topAndBottom.append("#");
 			}
 			topAndBottom.append("\n");
 			return topAndBottom;
@@ -37,7 +37,7 @@ class VerticalLines
 				for (int j = 0; j < widthOfWhiteSpace; j++)
 				{
 					if (j == 0 || j == (widthOfWhiteSpace - 1)) {
-						sides.append("|");
+						sides.append("#");
 					}
 					else
 					{
