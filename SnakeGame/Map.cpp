@@ -7,11 +7,7 @@ using namespace std;
 
 class HorizontalLines
 {
-	public:
-		string topAndBottom(int topAndBottomWidth) {
-			return makeTopAndBottomOfMap(topAndBottomWidth);
-		};
-	private:
+	protected:
 		string makeTopAndBottomOfMap(int topAndBottomWidth) {
 			string topAndBottom;
 			for (int i = 0; i < topAndBottomWidth; i++)
@@ -25,11 +21,7 @@ class HorizontalLines
 
 class VerticalLines
 {
-	public:
-		string sides(int hieghtOfSides, int widthOfWhiteSpace) {
-			return makeSidesOfMap(hieghtOfSides, widthOfWhiteSpace);
-		};
-	private:
+	protected:
 		string makeSidesOfMap(int hieghtOfSides, int widthOfWhiteSpace) {
 			string sides;
 			for (int i = 0; i < hieghtOfSides; i++)
@@ -72,9 +64,9 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		string finishedSquareMap;
 	private:
 		void makeSquare(int height, int width) {
-			finishedSquareMap.append(topAndBottom(width));
-			finishedSquareMap.append(sides(height,width));
-			finishedSquareMap.append(topAndBottom(width));
+			finishedSquareMap.append(makeTopAndBottomOfMap(width));
+			finishedSquareMap.append(makeSidesOfMap(height,width));
+			finishedSquareMap.append(makeTopAndBottomOfMap(width));
 		};
 };
 
