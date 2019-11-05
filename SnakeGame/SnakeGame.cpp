@@ -7,9 +7,9 @@ using namespace std;
 
 int main()
 {
-	mapGenerator testing;
-	int x; 
-	std:cin >> x;
-	string maybeMap = testing.makemap(x,x);
+	MapGenerator testing;
+	int x,y; 
+	std:cin >> x >> y;
+	string maybeMap = testing.makemap(x,y);
 	std::cout << maybeMap << std::endl;
 }

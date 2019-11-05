@@ -78,7 +78,7 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		};
 };
 
-string mapGenerator::makemap(int heightInput, int widthInput) {
+string MapGenerator::makemap(int heightInput, int widthInput) {
 	MakeMapSquare squareMap;
 	squareMap.setHeightAndWidth(heightInput, widthInput);
 	squareMap.makeShape(heightInput,widthInput);

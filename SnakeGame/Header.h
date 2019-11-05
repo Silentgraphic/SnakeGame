@@ -2,10 +2,17 @@
 #include <string>
 namespace Map
 {
-	class mapGenerator
+	class MapGenerator
 	{
 	public:
-		int sizeOfMap;
 		std::string makemap(int height, int width);
+	};
+}
+namespace Snake
+{
+	class SnakeGenerator
+	{
+	public:
+		std::string makeSnake();
 	};
 }
