@@ -10,6 +10,6 @@ int main()
 	mapGenerator testing;
 	int x; 
 	std:cin >> x;
-	string maybeMap = testing.makemap(x);
+	string maybeMap = testing.makemap(x,x);
 	std::cout << maybeMap << std::endl;
 }

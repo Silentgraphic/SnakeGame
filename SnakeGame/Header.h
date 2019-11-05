@@ -6,6 +6,6 @@ namespace Map
 	{
 	public:
 		int sizeOfMap;
-		std::string makemap(int perimeter);
+		std::string makemap(int height, int width);
 	};
 }

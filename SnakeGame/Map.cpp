@@ -5,7 +5,7 @@
 using namespace Map;
 using namespace std;
 
-class MakeTopAndBottomOfMap
+class HorizontalLines
 {
 	public:
 		string topAndBottom(int topAndBottomWidth) {
@@ -24,7 +24,7 @@ class MakeTopAndBottomOfMap
 		}
 };
 
-class MakeSidesOfMap
+class VerticalLines
 {
 	public:
 		string sides(int hieghtOfSides, int widthOfWhiteSpace) {
@@ -52,25 +52,39 @@ class MakeSidesOfMap
 		}
 };
 
-class MakeMapSquare:private MakeTopAndBottomOfMap,private MakeSidesOfMap 
+class Shape 
 {
+	public:
+		virtual string makeShape(int height,int width) = 0;
+		void setHeightAndWidth(int setHeight, int setWidth) {
+			int height = setHeight;
+			int width = setWidth;
+		};
+	protected:
+		int height;
+		int width;
+};
+
+class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
+{
+	public:
+		string makeShape(int height,int width) {
+			makeSquare(height, width);
+			return squareMap;
+		};
 	private:
 		string squareMap;
-		void make(int perimeter) {
-			squareMap.append(topAndBottom(perimeter));
-			squareMap.append(sides(perimeter, perimeter));
-			squareMap.append(topAndBottom(perimeter));
-		};
-	public:
-		string makeMapSquare(int perimeter) {
-			make(perimeter);
-			return squareMap;
+		void makeSquare(int height, int width) {
+			squareMap.append(topAndBottom(width));
+			squareMap.append(sides(height,width));
+			squareMap.append(topAndBottom(width));
 		};
 };
 
-string mapGenerator::makemap(int perimeter) {
+string mapGenerator::makemap(int heightInput, int widthInput) {
 	string finishedMap;
 	MakeMapSquare squareMap;
-	finishedMap = squareMap.makeMapSquare(perimeter);
+	squareMap.setHeightAndWidth(heightInput, widthInput);
+	finishedMap = squareMap.makeShape(heightInput,widthInput);
 	return finishedMap;
 };
