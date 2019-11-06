@@ -8,37 +8,37 @@ using namespace std;
 class HorizontalLines
 {
 	protected:
-		string makeTopAndBottomOfMap(int topAndBottomWidth) {
-			string topAndBottom;
-			for (int i = 0; i < topAndBottomWidth; i++)
+		string generateHorizontalLines(int width) {
+			string horizontalLine;
+			for (int i = 0; i < width; i++)
 			{
-				topAndBottom.append("#");
+				horizontalLine.append("#");
 			}
-			topAndBottom.append("\n");
-			return topAndBottom;
+			horizontalLine.append("\n");
+			return horizontalLine;
 		}
 };
 
 class VerticalLines
 {
 	protected:
-		string makeSidesOfMap(int hieghtOfSides, int widthOfWhiteSpace) {
-			string sides;
-			for (int i = 0; i < hieghtOfSides; i++)
+		string generateVerticalLine(int hieght, int width) {
+			string verticalLines;
+			for (int i = 0; i < hieght; i++)
 			{
-				for (int j = 0; j < widthOfWhiteSpace; j++)
+				for (int j = 0; j < width; j++)
 				{
-					if (j == 0 || j == (widthOfWhiteSpace - 1)) {
-						sides.append("#");
+					if (j == 0 || j == (width - 1)) {
+						verticalLines.append("#");
 					}
 					else
 					{
-						sides.append(" ");
+						verticalLines.append(" ");
 					}
 				}
-				sides.append("\n");
+				verticalLines.append("\n");
 			}
-			return sides;
+			return verticalLines;
 		}
 };
 
@@ -58,9 +58,9 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		};
 	private:
 		void makeSquare(int height, int width) {
-			map.finishedMap.append(makeTopAndBottomOfMap(width));
-			map.finishedMap.append(makeSidesOfMap(height,width));
-			map.finishedMap.append(makeTopAndBottomOfMap(width));
+			map.finishedMap.append(generateHorizontalLines(width));
+			map.finishedMap.append(generateVerticalLine(height,width));
+			map.finishedMap.append(generateHorizontalLines(width));
 		};
 };
 
