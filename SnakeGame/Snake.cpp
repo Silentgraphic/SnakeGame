@@ -9,18 +9,20 @@ class SnakeBody
 {
 	private:
 		string snakeBody;
+		int snakeLength = 3;
 	protected:
-		string snakeBodyGenerator() {
-			string snakeBody;
-			for (int i = 0; i < 5; i++)
+		void snakeBodyGenerator() {
+			for (int i = 0; i < snakeLength; i++)
 			{
 				snakeBody.append("o");
 			}
-			return snakeBody;
 		};
 		string getSnakeBody() {
 			return snakeBody;
-		}
+		};
+		void setSnakeLength(int length) {
+			snakeLength = length;
+		};
 };
 
 class SnakeHead
@@ -39,7 +41,6 @@ class SnakeHead
 class SnakeMaker: private SnakeBody, private SnakeHead
 {
 	private:
-		string finishedSnake;
 		SnakeComplete makeMeASnake;
 	public:
 		SnakeComplete generateFinishedSnake() {

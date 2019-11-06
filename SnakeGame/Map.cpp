@@ -46,6 +46,9 @@ class Shape
 {
 	public:
 		virtual CompletedMap makeShape(int height,int width) = 0;
+	private:
+		int width;
+		int height;
 };
 
 class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
