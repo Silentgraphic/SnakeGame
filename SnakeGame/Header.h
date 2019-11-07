@@ -23,8 +23,8 @@ namespace Snake
 	class SnakeComplete 
 	{
 	public:
-		std::string finsishedSnake;
 		int snakeLength;
+		std::string finsishedSnake;
 	};
 
 	//class used to build snake elements

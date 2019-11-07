@@ -7,38 +7,39 @@ using namespace std;
 
 class HorizontalLines
 {
+	public:
+		string horizontalLineSymbol = "#";
 	protected:
-		string generateHorizontalLines(int width) {
-			string horizontalLine;
+		void generateHorizontalLines(int width, CompletedMap *map) {
 			for (int i = 0; i < width; i++)
 			{
-				horizontalLine.append("#");
+				map->finishedMap.append(horizontalLineSymbol);
 			}
-			horizontalLine.append("\n");
-			return horizontalLine;
+			map->finishedMap.append("\n");
 		}
 };
 
 class VerticalLines
 {
+	public:
+		string verticalLinesSymbol = "#";
+		string whiteSpace = " ";
 	protected:
-		string generateVerticalLine(int hieght, int width) {
-			string verticalLines;
+		void generateVerticalLine(int hieght, int width,CompletedMap *map) {
 			for (int i = 0; i < hieght; i++)
 			{
 				for (int j = 0; j < width; j++)
 				{
 					if (j == 0 || j == (width - 1)) {
-						verticalLines.append("#");
+						map->finishedMap.append(verticalLinesSymbol);
 					}
 					else
 					{
-						verticalLines.append(" ");
+						map->finishedMap.append(whiteSpace);
 					}
 				}
-				verticalLines.append("\n");
+				map->finishedMap.append("\n");
 			}
-			return verticalLines;
 		}
 };
 
@@ -56,9 +57,9 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		};
 	private:
 		void makeSquare(int height, int width, CompletedMap *map) {
-			map->finishedMap.append(generateHorizontalLines(width));
-			map->finishedMap.append(generateVerticalLine(height,width));
-			map->finishedMap.append(generateHorizontalLines(width));
+			generateHorizontalLines(width,map);
+			generateVerticalLine(height,width,map);
+			generateHorizontalLines(width,map);
 		};
 };
 
