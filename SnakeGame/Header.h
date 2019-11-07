@@ -16,6 +16,8 @@ namespace Snake
 	class SnakeComplete 
 	{
 	public:
+		int posX;
+		int posY;
 		int snakeLength;
 		std::string finsishedSnake;
 	};
