@@ -151,11 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapLogic.cpp" />
     <ClCompile Include="SnakeGame.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="SnakeGraphics.h" />
   </ItemGroup>

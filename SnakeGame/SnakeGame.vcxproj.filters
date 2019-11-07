@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{3bd0aa2b-2e69-4614-b5e3-fcfdfbe08db0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{4892e329-35bc-41dc-ac4e-1451fd223b35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SnakeGame.cpp">
@@ -27,12 +30,24 @@
     <ClCompile Include="Snake.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="MapLogic.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeLogic.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogic.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SnakeGraphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
