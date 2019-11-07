@@ -16,12 +16,13 @@ class SnakeBody
 		};
 };
 
+
 class SnakeHead
 {
-	protected:
-		void snakeHeadGenerator(SnakeComplete* snakePointer) {
-			snakePointer->finsishedSnake.append("0");
-		};
+protected:
+	void snakeHeadGenerator(SnakeComplete* snakePointer) {
+		snakePointer->finsishedSnake.append("0");
+	};
 };
 
 class SnakeMaker: private SnakeBody, private SnakeHead
