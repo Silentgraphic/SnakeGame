@@ -13,7 +13,6 @@ namespace Map
 }
 namespace Snake
 {
-	//Finished snake class
 	class SnakeComplete 
 	{
 	public:
