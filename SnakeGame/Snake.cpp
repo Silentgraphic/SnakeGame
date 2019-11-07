@@ -7,54 +7,33 @@ using namespace std;
 
 class SnakeBody
 {
-	private:
-		string snakeBody;
-		int snakeLength = 3;
 	protected:
-		void snakeBodyGenerator() {
-			for (int i = 0; i < snakeLength; i++)
+		void snakeBodyGenerator(SnakeComplete *snakePointer) {
+			for (int i = 0; i < snakePointer->snakeLength; i++)
 			{
-				snakeBody.append("o");
+				snakePointer->finsishedSnake.append("o");
 			}
-		};
-		string getSnakeBody() {
-			return snakeBody;
-		};
-		void setSnakeLength(int length) {
-			snakeLength = length;
 		};
 };
 
 class SnakeHead
 {
-	private:
-		string snakeHead;
 	protected:
-		void snakeHeadGenerator() {
-			snakeHead.append("0");
-		};
-		string getSnakeHead() {
-			return snakeHead;
+		void snakeHeadGenerator(SnakeComplete* snakePointer) {
+			snakePointer->finsishedSnake.append("0");
 		};
 };
 
 class SnakeMaker: private SnakeBody, private SnakeHead
 {
-	private:
-		SnakeComplete makeMeASnake;
 	public:
-		SnakeComplete generateFinishedSnake() {
-			snakeBodyGenerator();
-			snakeHeadGenerator();
-			makeMeASnake.finsishedSnake.append(getSnakeBody());
-			makeMeASnake.finsishedSnake.append(getSnakeHead());
-			return makeMeASnake;
+		void generateFinishedSnake(SnakeComplete *snakePointer) {
+			snakeBodyGenerator(snakePointer);
+			snakeHeadGenerator(snakePointer);
 		};
 };
 
-SnakeComplete SnakeGenerator::makeSnake() {
+void SnakeGenerator::makeSnake(SnakeComplete *finishedSnake) {
 	SnakeMaker snake;
-	SnakeComplete completeSnake;
-	completeSnake = snake.generateFinishedSnake();
-	return completeSnake;
+	snake.generateFinishedSnake(finishedSnake);
 };

@@ -7,12 +7,14 @@ using namespace std;
 using namespace Snake;
 
 int main()
-{
-	int x,y; 
-	std:cin >> x >> y;
+{ 
+	CompletedMap maybeMap; 
+	SnakeComplete maybeSnake;
+	maybeSnake.snakeLength = 5;
+	std:cin >> maybeMap.mapHeight >> maybeMap.mapLength;
 	MapGenerator testing;
 	SnakeGenerator testing2;
-	CompletedMap maybeMap = testing.makemap(x,y);
-	SnakeComplete makeMeASnake = testing2.makeSnake();
-	std::cout << maybeMap.finishedMap << std::endl << makeMeASnake.finsishedSnake << std::endl;
+	testing.makemap(&maybeMap);
+	testing2.makeSnake(&maybeSnake);
+	std::cout << maybeMap.finishedMap << std::endl << maybeSnake.finsishedSnake << std::endl;
 }
