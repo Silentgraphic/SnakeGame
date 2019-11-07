@@ -69,3 +69,7 @@ void MapGraphics::MapGenerator::makemap(CompletedMap *map) {
 	MakeMapSquare squareMap;
 	squareMap.makeShape(map->mapHeight, map->mapLength,map);
 };
+
+void MapGraphics::PrintMapToConsole::printToConsole(CompletedMap* map) {
+	cout << map->finishedMap << endl;
+};

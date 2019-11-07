@@ -7,6 +7,11 @@ namespace MapGraphics {
 	public:
 		void makemap(Map::CompletedMap* map);
 	};
+	class PrintMapToConsole
+	{
+	public:
+		void printToConsole(Map::CompletedMap* map);
+	};
 }
 
 namespace SnakeGraphics {
@@ -14,5 +19,11 @@ namespace SnakeGraphics {
 	{
 	public:
 		void makeSnake(Snake::SnakeComplete* finishedSnake);
+	};
+
+	class PrintSnakeToConsole
+	{
+	public:
+		void printToConsole(Snake::SnakeComplete* finishedSnake);
 	};
 }

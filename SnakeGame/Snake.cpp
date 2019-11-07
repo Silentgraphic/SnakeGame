@@ -39,3 +39,7 @@ void SnakeGraphics::SnakeGenerator::makeSnake(SnakeComplete *finishedSnake) {
 	SnakeMaker snake;
 	snake.generateFinishedSnake(finishedSnake);
 };
+
+void SnakeGraphics::PrintSnakeToConsole::printToConsole(SnakeComplete* finishedSnake) {
+	cout << finishedSnake->finsishedSnake << endl;
+};

@@ -6,6 +6,6 @@ namespace MainLoop
 	class StartGame
 	{
 		public:
-			void run() {};
+			void run();
 	};
 }
