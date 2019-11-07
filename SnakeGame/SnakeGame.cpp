@@ -1,4 +1,5 @@
 #include "Header.h"
+#include "SnakeGraphics.h"
 #include <iostream>
 #include <string>
 
@@ -12,8 +13,8 @@ int main()
 	SnakeComplete maybeSnake;
 	maybeSnake.snakeLength = 5;
 	std:cin >> maybeMap.mapHeight >> maybeMap.mapLength;
-	MapGenerator testing;
-	SnakeGenerator testing2;
+	MapGraphics::MapGenerator testing;
+	SnakeGraphics::SnakeGenerator testing2;
 	testing.makemap(&maybeMap);
 	testing2.makeSnake(&maybeSnake);
 	std::cout << maybeMap.finishedMap << std::endl << maybeSnake.finsishedSnake << std::endl;

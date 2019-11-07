@@ -10,12 +10,6 @@ namespace Map
 		int mapLength;
 		std::string mapShape;
 	};
-
-	class MapGenerator
-	{
-	public:
-		void makemap(CompletedMap *map);
-	};
 }
 namespace Snake
 {
@@ -25,12 +19,5 @@ namespace Snake
 	public:
 		int snakeLength;
 		std::string finsishedSnake;
-	};
-
-	//class used to build snake elements
-	class SnakeGenerator
-	{
-	public:
-		void makeSnake(SnakeComplete *finishedSnake);
 	};
 }

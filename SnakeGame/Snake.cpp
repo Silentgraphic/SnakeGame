@@ -1,4 +1,5 @@
 #include "Header.h"
+#include "SnakeGraphics.h"
 #include <iostream>
 #include <string>
 
@@ -34,7 +35,7 @@ class SnakeMaker: private SnakeBody, private SnakeHead
 		};
 };
 
-void SnakeGenerator::makeSnake(SnakeComplete *finishedSnake) {
+void SnakeGraphics::SnakeGenerator::makeSnake(SnakeComplete *finishedSnake) {
 	SnakeMaker snake;
 	snake.generateFinishedSnake(finishedSnake);
 };

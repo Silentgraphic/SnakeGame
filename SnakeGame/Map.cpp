@@ -1,6 +1,8 @@
 #include "Header.h"
+#include "SnakeGraphics.h"
 #include <iostream>
 #include <string>
+
 
 using namespace Map;
 using namespace std;
@@ -63,7 +65,7 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		};
 };
 
-void MapGenerator::makemap(CompletedMap *map) {
+void MapGraphics::MapGenerator::makemap(CompletedMap *map) {
 	MakeMapSquare squareMap;
 	squareMap.makeShape(map->mapHeight, map->mapLength,map);
 };
