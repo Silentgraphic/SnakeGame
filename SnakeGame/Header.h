@@ -5,9 +5,9 @@ namespace Map
 	class CompletedMap 
 	{
 	public:
-		std::string finishedMap;
 		int mapHeight;
 		int mapLength;
+		std::string *finishedMap;
 		std::string mapShape;
 	};
 }

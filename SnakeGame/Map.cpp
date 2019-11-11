@@ -12,12 +12,12 @@ class HorizontalLines
 	public:
 		string horizontalLineSymbol = "#";
 	protected:
-		void generateHorizontalLines(int width, CompletedMap *map) {
+		void generateHorizontalLines(int width, CompletedMap *map,int height) {
 			for (int i = 0; i < width; i++)
 			{
-				map->finishedMap.append(horizontalLineSymbol);
+				map->finishedMap[i].append(horizontalLineSymbol);
 			}
-			map->finishedMap.append("\n");
+			map->finishedMap[width].append("\n");
 		}
 };
 
@@ -27,21 +27,18 @@ class VerticalLines
 		string verticalLinesSymbol = "#";
 		string whiteSpace = " ";
 	protected:
-		void generateVerticalLine(int hieght, int width,CompletedMap *map) {
-			for (int i = 0; i < hieght; i++)
+		void generateVerticalLine(int width,CompletedMap *map,int height) {
+			for (int j = 0; j < width; j++)
 			{
-				for (int j = 0; j < width; j++)
-				{
-					if (j == 0 || j == (width - 1)) {
-						map->finishedMap.append(verticalLinesSymbol);
-					}
-					else
-					{
-						map->finishedMap.append(whiteSpace);
-					}
+				if (j == 0 || j == (width - 1)) {
+					map->finishedMap[j].append(verticalLinesSymbol);
 				}
-				map->finishedMap.append("\n");
+				else
+				{
+					map->finishedMap[j].append(whiteSpace);
+				}
 			}
+			map->finishedMap[width].append("\n");
 		}
 };
 
@@ -59,9 +56,15 @@ class MakeMapSquare:public Shape,private HorizontalLines,private VerticalLines
 		};
 	private:
 		void makeSquare(int height, int width, CompletedMap *map) {
-			generateHorizontalLines(width,map);
-			generateVerticalLine(height,width,map);
-			generateHorizontalLines(width,map);
+			for (int i = 0; i <= height; i++)
+			{
+				if (i == 0|| i == height) {
+					generateHorizontalLines(width, map,i);
+				}
+				else {
+					generateVerticalLine(width, map,i);
+				}
+			}
 		};
 };
 
