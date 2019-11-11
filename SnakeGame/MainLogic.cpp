@@ -6,10 +6,12 @@
 
 using namespace std;
 
-class Frame 
+class Frame
 {
 	public:
 		string frame;
+		int snakePosx;
+		int snakePosY;
 };
 
 class snakePos 
@@ -18,34 +20,61 @@ class snakePos
 		void findSnakePosY(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
 			snake->posY *= map->mapLength+1;
 		};
+		void findSnakePosX(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
+			snake->posX = map->mapLength+1;
+		};
 };
 
-class LoacateSnakeOnMap:public Frame, public snakePos 
+class LoacateSnakeOnMap:public snakePos
 {
 	public:
-	void snakeLocator(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
-		frame = map->finishedMap;
-		findSnakePosY(snake, map);
-		for (int i = 0; i < (snake->snakeLength)+1; i++)
-		{ 
-			frame[(snake->posX+snake->posY)+i] = snake->finsishedSnake[i];
-		}
-		cout << frame << endl;
-	};
+		void snakeLocator(Snake::SnakeComplete* snake,Map::CompletedMap* map, Frame* frame) {
+			findSnakePosY(snake, map);
+			findSnakePosX(snake, map);
+			for (int i = 0, pos = 0; i < (snake->snakeLength) + 1; i++)
+			{
+				pos = snake->posX + snake->posY;
+				frame->frame[pos + i] = snake->finsishedSnake[i];
+			}
+		};
+};
+
+class GetMapData
+{
+	public:
+		Map::CompletedMap mapData;
+		GetMapData() {
+			mapData.mapHeight = 10;
+			mapData.mapLength = 10;
+		};
+};
+
+class GetSnakeData
+{
+	public:
+		Snake::SnakeComplete snakeData;
+		GetSnakeData() {;
+			snakeData.posX = 10;
+			snakeData.posY = 10;
+			snakeData.snakeLength = 3;
+		};
+};
+
+class GenerateGraphics
+{
+	private:
+		MapGraphics::MapGenerator mapMaker;
+		SnakeGraphics::SnakeGenerator snakeMaker;
+	public:
+		void generateGraphics(Snake::SnakeComplete* snake,Map::CompletedMap* map) {
+			mapMaker.makemap(map);
+			snakeMaker.makeSnake(snake);
+		};
 };
 
 void MainLoop::StartGame::run() {
-	Map::CompletedMap mapObject;
-	Snake::SnakeComplete snakeObject;
-	snakeObject.posX = 1;
-	snakeObject.posY = 1;
-	snakeObject.snakeLength = 3;
-	mapObject.mapHeight = 10;
-	mapObject.mapLength = 10;
-	MapGraphics::MapGenerator mapGenerator;
-	SnakeGraphics::SnakeGenerator snakeGenerator;
-	mapGenerator.makemap(&mapObject);
-	snakeGenerator.makeSnake(&snakeObject);
-	LoacateSnakeOnMap findPos;
-	findPos.snakeLocator(&snakeObject, &mapObject);
+	GenerateGraphics graphics;
+	GetSnakeData snakeData;
+	GetMapData mapData;
+	graphics.generateGraphics(&snakeData.snakeData, &mapData.mapData);
 };
