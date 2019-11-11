@@ -10,30 +10,16 @@ class Frame
 {
 	public:
 		string frame;
-		int snakePosx;
-		int snakePosY;
 };
 
-class snakePos 
+class LoacateSnakeOnMap
 {
 	public:
-		void findSnakePosY(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
-			snake->posY *= map->mapLength+1;
-		};
-		void findSnakePosX(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
-			snake->posX = map->mapLength+1;
-		};
-};
-
-class LoacateSnakeOnMap:public snakePos
-{
-	public:
-		void snakeLocator(Snake::SnakeComplete* snake,Map::CompletedMap* map, Frame* frame) {
-			findSnakePosY(snake, map);
-			findSnakePosX(snake, map);
+		void loacateSnakeOnMap(Snake::SnakeComplete* snake,Map::CompletedMap* map, Frame* frame) {
+			frame->frame = map->finishedMap;
 			for (int i = 0, pos = 0; i < (snake->snakeLength) + 1; i++)
 			{
-				pos = snake->posX + snake->posY;
+				pos = snake->posX + (snake->posY * map->mapLength +1);
 				frame->frame[pos + i] = snake->finsishedSnake[i];
 			}
 		};
@@ -54,8 +40,8 @@ class GetSnakeData
 	public:
 		Snake::SnakeComplete snakeData;
 		GetSnakeData() {;
-			snakeData.posX = 10;
-			snakeData.posY = 10;
+			snakeData.posX = 1;
+			snakeData.posY = 1;
 			snakeData.snakeLength = 3;
 		};
 };
@@ -73,8 +59,16 @@ class GenerateGraphics
 };
 
 void MainLoop::StartGame::run() {
-	GenerateGraphics graphics;
 	GetSnakeData snakeData;
 	GetMapData mapData;
+	GenerateGraphics graphics;
 	graphics.generateGraphics(&snakeData.snakeData, &mapData.mapData);
+	Frame frame1;
+	LoacateSnakeOnMap snakeLocation;
+	for (int i = 0; i < 9; i++)
+	{
+		snakeLocation.loacateSnakeOnMap(&snakeData.snakeData, &mapData.mapData, &frame1);
+		cout << frame1.frame << endl;
+		snakeData.snakeData.posX += 1;
+	}
 };
