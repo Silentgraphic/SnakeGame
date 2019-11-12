@@ -6,24 +6,7 @@
 
 using namespace std;
 
-class Frame
-{
-	public:
-		string frame;
-		void makeFrame(Map::CompletedMap* map) {
-			for (int i = 0; i < map->mapHeight; i++)
-			{
-			}
-		};
-};
 
-class LoacateSnakeOnMap
-{
-	public:
-		void loacateSnakeOnMap(Snake::SnakeComplete* snake,Map::CompletedMap* map, Frame* frame) {
-			
-		};
-};
 
 class GetMapData
 {
@@ -32,7 +15,7 @@ class GetMapData
 		GetMapData() {
 			mapData.mapHeight = 10;
 			mapData.mapLength = 10;
-			mapData.finishedMap = new std::string[mapData.mapHeight+1];
+			mapData.finishedMap = new string[mapData.mapHeight+1];
 		};
 };
 
@@ -47,23 +30,42 @@ class GetSnakeData
 		};
 };
 
-class GenerateGraphics
+class GenerateGraphics:public MapGraphics::MapGenerator, SnakeGraphics::SnakeGenerator
 {
-	private:
-		MapGraphics::MapGenerator mapMaker;
-		SnakeGraphics::SnakeGenerator snakeMaker;
 	public:
-		void generateGraphics(Snake::SnakeComplete* snake,Map::CompletedMap* map) {
-			mapMaker.makemap(map);
-			snakeMaker.makeSnake(snake);
+		GenerateGraphics(Snake::SnakeComplete* snake,Map::CompletedMap* map) {
+			makemap(map);
+			makeSnake(snake);
+		};
+};
+
+class LoacateSnakeOnMap
+{
+	public:
+		void loacateSnakeOnMap(Snake::SnakeComplete* snake,Map::CompletedMap* map) {
+			for (int i = 0; i < snake->snakeLength+1; i++)
+			{
+				map->finishedMap[snake->posY][snake->posX] = snake->finsishedSnake[i];
+				snake->posX++;
+			}
+		};
+};
+
+class PrintFrame:public LoacateSnakeOnMap
+{
+	public:
+		PrintFrame(Snake::SnakeComplete* snake, Map::CompletedMap* map) {
+			loacateSnakeOnMap(snake, map);
+			for(int i = 0; i < map->mapHeight; i++)
+			{
+				cout << map->finishedMap[i] << endl;
+			}
 		};
 };
 
 void MainLoop::StartGame::run() {
 	GetSnakeData snakeData;
 	GetMapData mapData;
-	GenerateGraphics graphics;
-	Frame frame1;
-	graphics.generateGraphics(&snakeData.snakeData, &mapData.mapData);
-	LoacateSnakeOnMap snakeLocation;
+	GenerateGraphics(&snakeData.snakeData, &mapData.mapData);
+	PrintFrame(&snakeData.snakeData,&mapData.mapData);
 };
